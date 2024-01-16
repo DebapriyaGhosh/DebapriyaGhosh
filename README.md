@@ -1,79 +1,38 @@
-//FCFS SCHEDULLING USING C 
-// C++ program to Calculate Waiting
-// Time for given Processes
-#include <iostream>
-using namespace std;
-
-// Function to Calculate waiting time
-// and average waiting time
-void CalculateWaitingTime(int at[],
-						int bt[], int N)
-{
-
-	// Declare the array for waiting
-	// time
-	int wt[N];
-
-	// Waiting time for first process
-	// is 0
-	wt[0] = 0;
-
-	// Print waiting time process 1
-	cout << "PN\t\tAT\t\t"
-		<< "BT\t\tWT\n\n";
-	cout << "1"
-		<< "\t\t" << at[0] << "\t\t"
-		<< bt[0] << "\t\t" << wt[0] << endl;
-
-	// Calculating waiting time for
-	// each process from the given
-	// formula
-	for (int i = 1; i < 5; i++) {
-		wt[i] = (at[i - 1] + bt[i - 1]
-				+ wt[i - 1]) - at[i];
-
-		// Print the waiting time for
-		// each process
-		cout << i + 1 << "\t\t" << at[i]
-			<< "\t\t" << bt[i] << "\t\t"
-			<< wt[i] << endl;
-	}
-
-	// Declare variable to calculate
-	// average
-	float average;
-	float sum = 0;
-
-	// Loop to calculate sum of all
-	// waiting time
-	for (int i = 0; i < 5; i++) {
-		sum = sum + wt[i];
-	}
-
-	// Find average waiting time
-	// by dividing it by no. of process
-	average = sum / 5;
-
-	// Print Average Waiting Time
-	cout << "\nAverage waiting time = "
-		<< average;
+FCFC CPU Scheduling using C program
+#include<stdio.h>
+  int main()
+ {
+    int n,bt[20],wt[20],tat[20],i,j;
+float avwt=0.0,avtat=0.0;
+    printf("Enter total number of processes(maximum 20):");
+    scanf("%d",&n);
+  printf("nEnter Process Burst Time\n");
+    for(i=0;i<n;i++)
+    {
+        printf("P[%d]:",i+1);
+        scanf("%d",&bt[i]);
+    }
+ wt[0]=0;   
+for(i=1;i<n;i++)
+    {
+        wt[i]=0;
+        for(j=0;j<i;j++)
+            wt[i]+=bt[j];
+    }
+printf("\nProcessttBurst \tWaitingTime \tTurnaround Time\n");
+ 
+    for(i=0;i<n;i++)
+    {
+        tat[i]=bt[i]+wt[i];
+        avwt+=wt[i];
+        avtat+=tat[i];
+        printf("\nP[%d]\t\t%d\t\t%d\t\t%d",i+1,bt[i],wt[i],tat[i]);
+    }
+ 
+    avwt/=i;
+    avtat/=i;
+    printf("\n\nAverage Waiting Time:%fms\n",avwt);
+    printf("\nAverage Turnaround Time:%fms\n",avtat);
+ 
+    return 0;
 }
-
-// Driver code
-int main()
-{
-	// Number of process
-	int N = 5;
-
-	// Array for Arrival time
-	int at[] = { 0, 1, 2, 3, 4 };
-
-	// Array for Burst Time
-	int bt[] = { 4, 3, 1, 2, 5 };
-
-	// Function call to find
-	// waiting time
-	CalculateWaitingTime(at, bt, N);
-	return 0;
-}
-//this code is contributed by snehalsalokhe
