@@ -1,0 +1,29 @@
+/*Lagrange Interpolation prog.*/
+#include<math.h>
+#include<stdio.h>
+main()
+{
+      float x[15],y[15],sum=0.0,X,prod;
+      int i,j,n;
+      printf("\t\t Output\n");
+      printf("\nEnter the no. of points:  ");
+      scanf("%d",&n);
+      printf("enter the value of X at which y is reqd.  ");
+      scanf("%f",&X);
+      printf("Enter the values of x and y :\n");
+      printf("\nx\ty=f(x)\n");
+      for(i=1;i<=n;i++)
+      scanf("%f\t%f",&x[i],&y[i]);
+      for(i=1;i<=n;i++)
+      {
+           prod=y[i];
+      for(j=1;j<=n;j++)
+       {
+       if(j!=i)
+       prod=prod*(X-x[j])/(x[i]-x[j]);
+       }
+       sum=sum+prod;
+      }
+               printf("\nAt x=%f,\n \n y=%f",X,sum);   
+}
+                                                                         
